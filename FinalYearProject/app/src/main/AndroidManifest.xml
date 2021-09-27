@@ -11,6 +11,9 @@
         android:theme="@style/Theme.FinalYearProject">
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AccountAcitivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

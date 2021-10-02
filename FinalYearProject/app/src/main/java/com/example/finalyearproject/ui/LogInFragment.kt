@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.findNavController
+import com.example.finalyearproject.MainActivity
 import com.example.finalyearproject.R
 import com.example.finalyearproject.databinding.FragmentFlowerFinderBinding
 import com.example.finalyearproject.databinding.FragmentLogInBinding
@@ -76,6 +77,13 @@ class LogInFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser != null) {
+            val intent: Intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun googleSignIn() {
         val signInIntent : Intent = googleSignInClient.signInIntent

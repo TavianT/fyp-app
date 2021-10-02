@@ -9,7 +9,7 @@ class Util {
             return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
         }
         fun isPasswordValid(password: String): Boolean {
-            val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\\\S+\$).{4,}\$"
+            val passwordPattern =  "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$"
             val pattern = Pattern.compile(passwordPattern)
             val matcher = pattern.matcher(password)
             return matcher.matches()

@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.findNavController
 import com.example.finalyearproject.MainActivity
 import com.example.finalyearproject.R
+import com.example.finalyearproject.Util
 import com.example.finalyearproject.databinding.FragmentFlowerFinderBinding
 import com.example.finalyearproject.databinding.FragmentLogInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -71,6 +73,15 @@ class LogInFragment : Fragment() {
         binding.googleSignInButton.setOnClickListener {
             googleSignIn()
         }
+        binding.signInButton.setOnClickListener {
+            val email: String = binding.editTextSignInEmailAddress.text.toString().trim()
+            val password: String = binding.editTextSignInPassword.text.toString().trim()
+            if (!Util.isEmailValid(email) && Util.isPasswordValid(password)) {
+                Toast.makeText(requireContext(),"Invalid email address or password", Toast.LENGTH_LONG).show()
+            } else {
+                emailPasswordSignIn(email, password)
+            }
+        }
 
         return root
     }
@@ -98,6 +109,17 @@ class LogInFragment : Fragment() {
                     Log.d(TAG, "signInWithCredential:success")
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
+                }
+            }
+    }
+    private fun emailPasswordSignIn(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) {task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signInWithEmail:success")
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(requireContext(),task.exception.toString(), Toast.LENGTH_LONG).show()
                 }
             }
     }

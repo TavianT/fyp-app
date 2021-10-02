@@ -37,11 +37,11 @@ class RegisterFragment : Fragment() {
 
         val root: View = binding.root
         binding.registerButton.setOnClickListener {
-            val emailAddress: String = binding.editTextRegisterEmailAddress.toString().trim()
-            val password: String = binding.editTextRegisterPassword.toString().trim()
-            val confirmPassword: String = binding.editTextRegisterConfirmPassword.toString().trim()
+            val emailAddress: String = binding.editTextRegisterEmailAddress.text.toString().trim()
+            val password: String = binding.editTextRegisterPassword.text.toString().trim()
+            val confirmPassword: String = binding.editTextRegisterConfirmPassword.text.toString().trim()
             if (!Util.isEmailValid(emailAddress)) {
-                Toast.makeText(requireContext(), "Email address is invalid", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Email address $emailAddress is invalid", Toast.LENGTH_LONG).show()
             } else if (!Util.isPasswordValid(password)) {
                 Toast.makeText(requireContext(), "Password is invalid, see rules above", Toast.LENGTH_LONG).show()
             } else if(!Util.passwordsMatch(password, confirmPassword)) {

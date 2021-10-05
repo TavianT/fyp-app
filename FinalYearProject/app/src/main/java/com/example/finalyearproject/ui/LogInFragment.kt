@@ -107,6 +107,8 @@ class LogInFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
+                    val intent: Intent = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                 }
@@ -117,6 +119,8 @@ class LogInFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) {task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
+                    val intent: Intent = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(requireContext(),task.exception.toString(), Toast.LENGTH_LONG).show()

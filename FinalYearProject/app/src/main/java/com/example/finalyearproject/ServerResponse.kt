@@ -1,14 +1,7 @@
 package com.example.finalyearproject
 
-class ServerResponse {
+data class ServerResponse (
     //TODO: This file is temporary delete later
-    private lateinit var contentType: String
-    private lateinit var fileName: String
-
-    public fun getContentType() : String {
-        return contentType
-    }
-    public fun getFileName() : String {
-        return fileName
-    }
-}
+    val content_type: String,
+    val file_name: String
+    )

@@ -60,13 +60,18 @@ class FlowerFinderFragment : Fragment() {
                 val inputStream = requireContext().contentResolver.openInputStream(fileUri)
                 val imageBytes = getBytes(inputStream!!)
                 val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imageBytes)
-                val body =  MultipartBody.Part.createFormData("image", ".jpg", requestFile) //TODO: add proper filename
+                val body =  MultipartBody.Part.createFormData("file", "test.jpg", requestFile) //TODO: add proper filename
                 val request = ServiceBuilder.buildService(RetrofitInterface::class.java)
                 val call = request.uploadImage(body)
                 call.enqueue(object : Callback<ServerResponse>{
                     override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
-                        Log.d(TAG, "Filename: " + response.body()!!.getFileName())
-                        Log.d(TAG, "content type: " + response.body()!!.getContentType())
+                        if (response.isSuccessful()) {
+                            //Log.d(TAG, "response:" + response.)
+                            Log.d(TAG, "Filename: " + response.body()!!.file_name)
+                            Log.d(TAG, "content type: " + response.body()!!.content_type)
+                        } else {
+                            Log.e(TAG, "Error on response")
+                        }
                     }
 
                     override fun onFailure(call: Call<ServerResponse>, t: Throwable) {

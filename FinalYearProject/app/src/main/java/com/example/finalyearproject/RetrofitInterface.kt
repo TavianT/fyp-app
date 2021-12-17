@@ -8,6 +8,6 @@ import retrofit2.Call;
 
 interface RetrofitInterface {
     @Multipart
-    @POST("/files/")
+    @POST("files/")
     fun uploadImage(@Part image: MultipartBody.Part) : Call<ServerResponse>
 }

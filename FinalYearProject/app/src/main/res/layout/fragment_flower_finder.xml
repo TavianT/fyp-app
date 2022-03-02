@@ -9,9 +9,9 @@
     <Button
         android:id="@+id/GalleryButton"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="81dp"
         android:text="Gallery"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,13 +21,24 @@
     <Button
         android:id="@+id/CameraButton"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="81dp"
         android:text="Camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/GalleryButton" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

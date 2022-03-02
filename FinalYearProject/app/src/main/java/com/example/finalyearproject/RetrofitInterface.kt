@@ -9,5 +9,5 @@ import retrofit2.Call;
 interface RetrofitInterface {
     @Multipart
     @POST("files/")
-    fun uploadImage(@Part image: MultipartBody.Part) : Call<ServerResponse>
+    fun uploadImage(@Part image: MultipartBody.Part) : Call<ImageClassification>
 }

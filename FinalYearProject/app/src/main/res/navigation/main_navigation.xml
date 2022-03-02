@@ -15,11 +15,27 @@
         android:id="@+id/navigation_flower_finder"
         android:name="com.example.finalyearproject.ui.dashboard.FlowerFinderFragment"
         android:label="@string/title_find_flower"
-        tools:layout="@layout/fragment_flower_finder" />
+        tools:layout="@layout/fragment_flower_finder" >
+        <action
+            android:id="@+id/action_navigation_flower_finder_to_resultFragment"
+            app:destination="@id/navigation_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.finalyearproject.ui.notifications.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/navigation_result"
+        android:name="com.example.finalyearproject.ui.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="filePath"
+            app:argType="string" />
+        <argument
+            android:name="class"
+            app:argType="string" />
+    </fragment>
 </navigation>

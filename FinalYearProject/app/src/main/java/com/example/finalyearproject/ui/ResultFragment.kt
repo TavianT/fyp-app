@@ -74,7 +74,7 @@ class ResultFragment : Fragment() {
             var uploadTask = storageReference.putBytes(data)
             uploadTask.addOnFailureListener{ e ->
                 //TODO: OUTPUT FAILURE TO THE USER
-                Log.e("Image upload error", "Unable to upload image to cloud firestore", e)
+                Log.e("Image upload error", "Unable to upload image to cloud FireStore", e)
             }.addOnSuccessListener { taskSnapshot ->
                 val db = Firebase.firestore
                 val imageData = hashMapOf(

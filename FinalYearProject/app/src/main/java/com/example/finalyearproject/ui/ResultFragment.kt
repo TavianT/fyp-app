@@ -71,7 +71,7 @@ class ResultFragment : Fragment() {
             val ts = System.currentTimeMillis().toString()
             val fileName = "$uid-$ts"
             val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
-            var uploadTask = storageReference.putBytes(data)
+            val uploadTask = storageReference.putBytes(data)
             uploadTask.addOnFailureListener{ e ->
                 //TODO: OUTPUT FAILURE TO THE USER
                 Log.e("Image upload error", "Unable to upload image to cloud FireStore", e)

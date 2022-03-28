@@ -8,12 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.finalyearproject.MainActivity
 import com.example.finalyearproject.R
+import com.example.finalyearproject.ResetPasswordDialogFragment
 import com.example.finalyearproject.Util
 import com.example.finalyearproject.databinding.FragmentFlowerFinderBinding
 import com.example.finalyearproject.databinding.FragmentLogInBinding
@@ -83,6 +87,10 @@ class LogInFragment : Fragment() {
             }
         }
 
+        binding.textViewResetPassword.setOnClickListener {
+            showResetPasswordDialog()
+        }
+
         return root
     }
     override fun onDestroyView() {
@@ -123,8 +131,13 @@ class LogInFragment : Fragment() {
                     startActivity(intent)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(requireContext(),task.exception.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun showResetPasswordDialog() {
+        val dialog = ResetPasswordDialogFragment()
+        dialog.show(requireActivity().supportFragmentManager,"ResetPasswordFragment")
     }
 }

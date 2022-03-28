@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="Help"
     app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.finalyearproject.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_navigation_information"
             app:destination="@id/navigation_information" />
@@ -19,7 +20,7 @@
         android:id="@+id/navigation_flower_finder"
         android:name="com.example.finalyearproject.ui.dashboard.FlowerFinderFragment"
         android:label="@string/title_find_flower"
-        tools:layout="@layout/fragment_flower_finder" >
+        tools:layout="@layout/fragment_flower_finder">
         <action
             android:id="@+id/action_navigation_flower_finder_to_resultFragment"
             app:destination="@id/navigation_result" />
@@ -60,4 +61,9 @@
             android:name="class"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_help"
+        android:name="com.example.finalyearproject.HelpFragment"
+        android:label="Help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

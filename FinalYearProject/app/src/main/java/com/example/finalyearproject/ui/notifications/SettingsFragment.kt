@@ -1,40 +1,50 @@
 package com.example.finalyearproject.ui.notifications
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import com.example.finalyearproject.AccountAcitivity
 import com.example.finalyearproject.R
-import com.example.finalyearproject.databinding.FragmentSettingsBinding
 
-class SettingsFragment : Fragment() {
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentSettingsBinding? = null
+class SettingsFragment : PreferenceFragmentCompat() {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        val context = preferenceManager.context
+        val screen = preferenceManager.createPreferenceScreen(context)
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+        val logOutPreference = Preference(context)
+        logOutPreference.key = "logout"
+        logOutPreference.title = "Log Out"
+        logOutPreference.setOnPreferenceClickListener {
+            Firebase.auth.signOut()
+            val intent: Intent = Intent(requireContext(), AccountAcitivity::class.java)
+            startActivity(intent)
+            true
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        }
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        val helpPreference = Preference(context)
+        helpPreference.key = "help"
+        helpPreference.title = "Help"
+        helpPreference.summary = "Help with using the app"
+        helpPreference.setOnPreferenceClickListener {
+            findNavController().navigate(R.id.navigation_help)
+            true
+        }
+
+//        val accountPreference = Preference(context)
+//        accountPreference.key = "account"
+//        accountPreference.title = "Account Information"
+//
+//        screen.addPreference(accountPreference)
+        screen.addPreference(helpPreference)
+        screen.addPreference(logOutPreference)
+
+        preferenceScreen = screen
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

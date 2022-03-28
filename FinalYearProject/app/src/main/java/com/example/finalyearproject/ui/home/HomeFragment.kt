@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
                             titles.add(document.getString("class")!!)
                             c.timeInMillis = document.getString("timeStamp")!!.toLong()
                             val date =
-                                c[Calendar.YEAR].toString() + "-" + c[Calendar.MONTH] + "-" + c[Calendar.DAY_OF_MONTH]
+                                c[Calendar.YEAR].toString() + "-" + (c[Calendar.MONTH] + 1) + "-" + c[Calendar.DAY_OF_MONTH]
                             val time =
                                 c[Calendar.HOUR_OF_DAY].toString() + ":" + c[Calendar.MINUTE]
                             dates.add("$date $time")
